@@ -4,6 +4,7 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { HttpResponseOutputParser } from "langchain/output_parsers";
+import llm_model from "./model"
 
 export const runtime = "edge";
 
@@ -42,10 +43,7 @@ export async function POST(req: NextRequest) {
      * See a full list of supported models at:
      * https://js.langchain.com/docs/modules/model_io/models/
      */
-    const model = new ChatOpenAI({
-      temperature: 0.8,
-      model: "gpt-3.5-turbo-0125",
-    });
+    const model = llm_model;
 
     /**
      * Chat models stream message chunks rather than bytes, so this
